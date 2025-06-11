@@ -10,15 +10,15 @@ import (
 
 var NewBook models.Book
 
+func CreateBook(w http.ResponseWriter, r *http.Request) {
 
-
-func CreateBook(w http.ResponseWriter, r *http.Request){
-	
+	// getting the book struct
 	Book := &models.Book{}
-	
+
+	// getting the request body and unmarshals it to gives struct
 	utils.ParseBody(r, Book)
 
-	b:= Book.CreateBook()
+	b := Book.CreateBook()
 
 	res, _ := json.Marshal(b)
 
@@ -26,31 +26,27 @@ func CreateBook(w http.ResponseWriter, r *http.Request){
 
 	w.Write(res)
 
-
 }
 
+func GetBook(w http.ResponseWriter, r *http.Request) {
+	newBooks := models.GetAllBooks()
 
-func GetBook(w http.ResponseWriter, r *http.Request){
-	newBooks:=models.GetAllBooks()
+	res, _ := json.Marshal(newBooks)
 
-	res,_ := json.Marshal(newBooks)
-
-	w.Header().Set("Content-Type","pkglication/json")
+	w.Header().Set("Content-Type", "pkglication/json")
 
 	w.WriteHeader(http.StatusOK)
 
 	w.Write(res)
 }
 
-
-
-func GetBookById(w http.ResponseWriter, r *http.Request){
+func GetBookById(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func UpdateBook(w http.ResponseWriter, r *http.Request){
+func UpdateBook(w http.ResponseWriter, r *http.Request) {
 
 }
-func DeleteBook(w http.ResponseWriter, r *http.Request){
+func DeleteBook(w http.ResponseWriter, r *http.Request) {
 
 }
